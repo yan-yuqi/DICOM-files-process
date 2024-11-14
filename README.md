@@ -16,6 +16,22 @@ Output:
 2. logging file as ExtractDicomInfo.log
 
 
+Explanation:
+Group (Base Class):
+Base class for handling general folder and logging operations.
+Manages folder identification, anonymized folder handling, and log writing.
+
+Participant (Derived from Group):
+Represents a specific participant.
+Methods include get_participant_folders for retrieving DICOM folders, get_dcm_subtypes for identifying DICOM file types, and collect_dcm_info for extracting DICOM metadata.
+Uses convert_to_dataframe to compile DICOM data into a structured DataFrame.
+
+DataCollector (Standalone Class):
+Manages the data collection process for multiple participants.
+Uses get_all_participants to gather participant IDs and execute_collection to initiate and compile the process across participants.
+Aggregates individual participant DataFrames into df_demographics and writes to CSV via write_to_csv.
+
+
      　　　　　　　　　　　　　　　　　　　　+-------------------------+
                                    |      Group (Base)       |
                                    +-------------------------+
