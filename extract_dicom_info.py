@@ -372,52 +372,52 @@ class Participant(Group):
 
         # Participant folders
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant folders collecting starts...'.format(self.general_id),
             level='info'
         )
         self.participant_folders = self.get_participant_folders()
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant folders collecting finished.'.format(self.general_id),
             level='info'
         )
 
         # Participant subtypes
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant subtype getting starts...'.format(self.general_id),
             level='info'
         )
         self.participant_subtypes = self.get_dcm_subtypes(self.participant_folders)
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant subtype getting finished.'.format(self.general_id),
             level='info'
         )
 
         # Collect Dicom information
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant Dicom information collecting starts...'.format(self.general_id),
             level='info'
         )
         self.participant_info = self.collect_dcm_info(self.participant_subtypes)
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Participant Dicom information collecting finished.'.format(self.general_id),
             level='info'
         )
 
         # Convert to dataframe
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Converting to dataframe starts...'.format(self.general_id),
             level='info'
         )
         self.participant_dataframe = self.convert_to_dataframe(self.participant_info)
         self.write_to_log(
-            self.sourcedir,
+            self.outputdir,
             '{}: Converting to dataframe finished.'.format(self.general_id),
             level='info'
         )
@@ -608,11 +608,12 @@ class DataCollector:
 
 # -------------------------------Parameters-------------------------------------------------
 
-source_dir = '/Users/UserName/Desktop/Proj/'
-prefix = 'HC'
+source_dir = '/Users/yanyuqi/Desktop/DAT'
+output_dir = '/Users/yanyuqi/Desktop/Proj'
+prefix = 'ZA-'
 digit = 3
-suffix = ''
+suffix = 'MRI'
 
 # -------------------------------Execution--=------------------------------------------------
-data_collector = DataCollector(source_dir, prefix, digit, suffix)
+data_collector = DataCollector(source_dir, prefix, digit, suffix, outputdir=output_dir)
 data_collector.execute_collection()
